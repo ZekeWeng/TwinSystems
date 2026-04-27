@@ -51,7 +51,12 @@ impl<T: Zeroable> AlignedBuffer<T> {
         let raw = unsafe { alloc_zeroed(layout) };
         let ptr = NonNull::new(raw.cast()).unwrap_or_else(|| handle_alloc_error(layout));
 
-        Self { ptr, len, layout, _marker: PhantomData }
+        Self {
+            ptr,
+            len,
+            layout,
+            _marker: PhantomData,
+        }
     }
 }
 
